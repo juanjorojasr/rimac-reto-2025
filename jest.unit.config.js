@@ -1,0 +1,67 @@
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  rootDir: './',
+  testMatch: ['**/test/unit/**/*.steps.ts'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  transform: {
+    '^.+\\.(t|j)s$': 'ts-jest',
+  },
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.dto.ts',
+    '!src/**/*.interface.ts',
+    '!src/**/*.constants.ts',
+    '!src/**/*.module.ts',
+    '!src/**/*.entity.ts',
+    '!src/**/index.ts',
+    '!src/main.ts',
+    '!src/**/*.spec.ts',
+    '!src/**/*.mock.ts',
+    '!src/config/**',
+    '!src/decorators/**',
+    '!src/middleware/**',
+    '!src/database/**',
+  ],
+  coverageDirectory: 'coverage/unit',
+  coverageReporters: ['text', 'lcov', 'html'],
+  coverageThreshold: {
+    global: {
+      statements: 50,
+      branches: 40,
+      functions: 50,
+      lines: 50,
+    },
+    // thresholds específicos
+    './src/services/**/*.ts': {
+      statements: 95,
+      branches: 85,
+      functions: 95,
+      lines: 95,
+    },
+    './src/controllers/**/*.ts': {
+      statements: 90,
+      branches: 70,
+      functions: 90,
+      lines: 90,
+    },
+    './src/utils/**/*.ts': {
+      statements: 90,
+      branches: 85,
+      functions: 90,
+      lines: 90,
+    },
+    './src/repositories/**/*.ts': {
+      statements: 90,
+      branches: 80,
+      functions: 90,
+      lines: 90,
+    },
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@test/(.*)$': '<rootDir>/test/$1',
+  },
+  testTimeout: 10000,
+  verbose: true,
+};
